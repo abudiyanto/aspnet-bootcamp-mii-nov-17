@@ -1,0 +1,55 @@
+﻿@model BootPress.Models.News
+@{
+    ViewBag.Title = "NewsDetail";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row page-titles">
+    <div class="col-md-6 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">News</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item">News</li>
+            <li class="breadcrumb-item active">@Model.Title</li>
+        </ol>
+    </div>
+    <div class="col-md-6 col-4 align-self-center">
+
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h1>@Model.Title</h1>
+                <p>Author @Model.Author.FullName</p>
+                <p>@Model.Created.ToString("dd-mm-yyyy hh:mm")</p>
+                <p>Kategori: @Model.Category.Name</p>
+                <p>Harga: @Model.Price</p>
+                @Html.Raw(HttpUtility.HtmlDecode(Model.Content))
+                @using (Html.BeginForm("NewsDelete", "Administrators", null, FormMethod.Post, new { @class = "form-horizontal m-t-40" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.Permalink)
+                    <div class="form-group">
+                        <input type="submit" value="Hapus" class="btn btn-danger" />
+                    </div>
+                }
+                @using (Html.BeginForm("NewsApprove", "Administrators", null, FormMethod.Post, new { @class = "form-horizontal m-t-40" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.Permalink)
+                    <div class="form-group">
+                        <input type="submit" value="Approve" class="btn btn-primary" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

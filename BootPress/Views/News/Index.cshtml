@@ -1,0 +1,121 @@
+﻿@model IEnumerable<BootPress.Models.News>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Index";
+}
+<div class="row page-titles">
+    <div class="col-md-6 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">News Management</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">News</a></li>
+            <li class="breadcrumb-item active">Daftar Berita</li>
+        </ol>
+    </div>
+    <div class="col-md-6 col-4 align-self-center">
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"><a href="@Url.Action("Create","News")" class="btn btn-info btn-rounded">Tambahkan Berita</a></h4>
+                <div class="table-responsive m-t-40">
+                    <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Judul Berita</th>
+                                <th>Kategori</th>
+                                <th>Harga</th>
+                                <th>Tanggal</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Judul Berita</th>
+                                <th>Harga</th>
+                                <th>Penulis</th>
+                                <th>Tanggal</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Title</td>
+                                    <td>@item.Category.Name</td>
+                                    <td>@item.Price</td>
+                                    <td>@item.Created.ToString("dd-MM-yyyy hh:mm")</td>
+                                    <td>
+                                        <a href="@Url.Action("Edit","News", new { id = @item.Permalink })" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                        <a href="@Url.Action("Details","News", new { id = @item.Permalink })" data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-globe text-danger"></i> </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hightlight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author.FullName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.Raw(HttpUtility.HtmlDecode(item.Hightlight))
+        </td>
+        <td>
+            @Html.Raw(HttpUtility.HtmlDecode(item.Content))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author.FullName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Permalink }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Permalink }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Permalink })
+        </td>
+    </tr>
+}
+
+</table>*@
