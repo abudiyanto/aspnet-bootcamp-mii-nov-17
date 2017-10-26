@@ -15,6 +15,7 @@ namespace BootPress.Models
         public string AvatarUrl { get; set; }
         public DateTimeOffset Registered { get; set; }
         public bool IsBanned { get; set; }
+        public double Balance { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

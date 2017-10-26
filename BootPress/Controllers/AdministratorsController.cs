@@ -95,6 +95,7 @@ namespace BootPress.Controllers
             {
                 news.Status = Status.Published;
                 news.Updated = DateTimeOffset.Now;
+                news.Author.Balance += news.Price;
                 var newsTransaction = new NewsTransaction()
                 {
                     News = news,
